@@ -1,5 +1,5 @@
 ### Supabase selfhosted using external postgresql instance
-#it is .env file 
+# it is .env file 
 ```bash
 ############
 # Secrets
@@ -134,7 +134,7 @@ DOCKER_SOCKET_LOCATION=/var/run/docker.sock
 GOOGLE_PROJECT_ID=GOOGLE_PROJECT_ID
 GOOGLE_PROJECT_NUMBER=GOOGLE_PROJECT_NUMBER
 ```
-#It is the docker-compose.yml file
+# It is the docker-compose.yml file
 ```bash
 services:
   studio:
@@ -622,7 +622,7 @@ services:
         config:
           hide_credentials: true
 ```
-#to download the PGJWT
+# to download the PGJWT
 ```bash
 docker exec -it <container-name> sh
 apt update 
