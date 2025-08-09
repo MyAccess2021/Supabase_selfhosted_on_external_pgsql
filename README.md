@@ -686,7 +686,7 @@ GRANT USAGE ON SCHEMA public TO webuser;
 GRANT USAGE ON SCHEMA public TO anonymous;
 -- Create and Assign Roles to authenticator
 GRANT anon TO authenticator;
--- If you're using Supabase Docker, these may be auto-created
+-- If youre using Supabase Docker, these may be auto-created
 CREATE SCHEMA IF NOT EXISTS auth;
 CREATE SCHEMA IF NOT EXISTS storage;
 CREATE SCHEMA IF NOT EXISTS graphql_public;
