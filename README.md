@@ -183,7 +183,7 @@ services:
 
   auth:
     container_name: supabase-auth
-    image: supabase/gotrue:v2.176.1
+    image: supabase/gotrue:v2.177.0
     restart: unless-stopped
     environment:
       GOTRUE_API_HOST: 0.0.0.0
@@ -253,7 +253,7 @@ services:
 
   storage:
     container_name: supabase-storage
-    image: supabase/storage-api:v1.24.7
+    image: supabase/storage-api:v1.25.7
     restart: unless-stopped
     volumes:
       - ./volumes/storage:/var/lib/storage:z
@@ -286,7 +286,7 @@ services:
 
   meta:
     container_name: supabase-meta
-    image: supabase/postgres-meta:v0.89.3
+    image: supabase/postgres-meta:v0.91.0
     restart: unless-stopped
     environment:
       PG_META_PORT: 8080
@@ -349,7 +349,7 @@ services:
 
   supavisor:
     container_name: supabase-pooler
-    image: supabase/supavisor:2.5.6
+    image: supabase/supavisor:2.5.7
     restart: unless-stopped
     ports:
       - ${POSTGRES_PORT}:5432
