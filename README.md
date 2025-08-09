@@ -717,7 +717,26 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA storage GRANT SELECT, INSERT, UPDATE, DELETE 
 GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO anon;
 --  Grant on all future sequences:
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT USAGE, SELECT ON SEQUENCES TO anon;
+CREATE PUBLICATION supabase_realtime FOR ALL TABLES;
+ALTER SYSTEM SET wal_level = logical;  -- Then restart PostgreSQL
+ALTER PUBLICATION supabase_realtime OWNER TO supabase_admin;
+CREATE ROLE authenticated;
+GRANT USAGE ON SCHEMA public TO authenticated;
+GRANT authenticated TO authenticator;
+CREATE ROLE service_role;
+GRANT service_role TO authenticator;
+GRANT authenticator TO supabase_admin;
+CREATE SCHEMA IF NOT EXISTS _supavisor;
+CREATE ROLE postgres WITH LOGIN PASSWORD 'myaccess' CREATEDB CREATEROLE;
+ALTER ROLE supabase_auth_admin WITH CREATEROLE;
+-- Grant usage on the storage schema to the storage admin
+GRANT USAGE ON SCHEMA storage TO supabase_storage_admin;
 
+-- Grant all permissions on existing storage tables
+GRANT ALL ON ALL TABLES IN SCHEMA storage TO supabase_storage_admin;
+
+-- This is important to ensure future tables also get permissions
+ALTER DEFAULT PRIVILEGES IN SCHEMA storage GRANT ALL ON TABLES TO supabase_storage_admin;
 ```
 
 
